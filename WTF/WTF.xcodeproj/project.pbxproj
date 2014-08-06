@@ -40,7 +40,6 @@
 		0FD81AC5154FB22E00983E72 /* FastBitVector.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FD81AC4154FB22E00983E72 /* FastBitVector.h */; settings = {ATTRIBUTES = (); }; };
 		0FDDBFA71666DFA300C55FEF /* StringPrintStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0FDDBFA51666DFA300C55FEF /* StringPrintStream.cpp */; };
 		0FDDBFA81666DFA300C55FEF /* StringPrintStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FDDBFA61666DFA300C55FEF /* StringPrintStream.h */; };
-		14022F4118F5C3FC007FF0EB /* libbmalloc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14022F4018F5C3FC007FF0EB /* libbmalloc.a */; };
 		143F611F1565F0F900DB514A /* RAMSize.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 143F611D1565F0F900DB514A /* RAMSize.cpp */; };
 		143F61201565F0F900DB514A /* RAMSize.h in Headers */ = {isa = PBXBuildFile; fileRef = 143F611E1565F0F900DB514A /* RAMSize.h */; settings = {ATTRIBUTES = (); }; };
 		1447AEC618FCE57700B3D7FF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1447AEC518FCE57700B3D7FF /* Foundation.framework */; };
@@ -585,7 +584,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14022F4118F5C3FC007FF0EB /* libbmalloc.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1415,6 +1413,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5D247B7314689C4700E78B76 /* WTF.xcconfig */;
 			buildSettings = {
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(DEBUG_DEFINES)",
+					"WEBKIT_VERSION_MIN_REQUIRED=WEBKIT_VERSION_LATEST",
+					HAVE_HEADER_DETECTION_H,
+					"$(GCC_PREPROCESSOR_DEFINITIONS)",
+					"UCONFIG_NO_COLLATION=1",
+					"HAVE_QOS_CLASSES=0",
+				);
 			};
 			name = Debug;
 		};
@@ -1422,6 +1429,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5D247B7314689C4700E78B76 /* WTF.xcconfig */;
 			buildSettings = {
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(DEBUG_DEFINES)",
+					"WEBKIT_VERSION_MIN_REQUIRED=WEBKIT_VERSION_LATEST",
+					HAVE_HEADER_DETECTION_H,
+					"$(GCC_PREPROCESSOR_DEFINITIONS)",
+					"UCONFIG_NO_COLLATION=1",
+					"HAVE_QOS_CLASSES=0",
+				);
 			};
 			name = Release;
 		};
@@ -1436,6 +1452,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5D247B7314689C4700E78B76 /* WTF.xcconfig */;
 			buildSettings = {
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(DEBUG_DEFINES)",
+					"WEBKIT_VERSION_MIN_REQUIRED=WEBKIT_VERSION_LATEST",
+					HAVE_HEADER_DETECTION_H,
+					"$(GCC_PREPROCESSOR_DEFINITIONS)",
+					"UCONFIG_NO_COLLATION=1",
+					"HAVE_QOS_CLASSES=0",
+				);
 			};
 			name = Production;
 		};
