@@ -1569,15 +1569,17 @@ private:
     PageHeapAllocator<TCMalloc_ThreadCache>* m_pageHeapAllocator;
 };
 
+#if !PLATFORM(IOS) || !defined(NDEBUG)
 // This method declaration, and the constants below, are taken from Libc/gen/malloc.c.
 extern "C" void (*malloc_logger)(uint32_t typeFlags, uintptr_t zone, uintptr_t size, uintptr_t pointer, uintptr_t returnValue, uint32_t numberOfFramesToSkip);
+#endif
 
 #endif
 
 class MallocHook {
     static bool stackLoggingEnabled;
 
-#if OS(DARWIN)
+#if OS(DARWIN) && (!PLATFORM(IOS) || !defined(NDEBUG))
     
     enum StackLoggingType {
         StackLoggingTypeAlloc = 2,
@@ -1607,13 +1609,13 @@ class MallocHook {
 public:
     static void init()
     {
-#if OS(DARWIN)
+#if OS(DARWIN) && (!PLATFORM(IOS) || !defined(NDEBUG))
         // If the system allocator's malloc_logger has been set up then stack logging is enabled.
         stackLoggingEnabled = malloc_logger;
 #endif
     }
 
-#if OS(DARWIN)
+#if OS(DARWIN) && (!PLATFORM(IOS) || !defined(NDEBUG))
     static ALWAYS_INLINE void InvokeNewHook(void* pointer, size_t size)
     {
         if (UNLIKELY(stackLoggingEnabled))
